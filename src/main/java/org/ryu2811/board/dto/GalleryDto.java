@@ -9,6 +9,7 @@ import org.ryu2811.board.entity.GalleryEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Data
@@ -23,6 +24,7 @@ public class GalleryDto {
   private LocalDateTime createdAt;
 
   private MultipartFile file;
+  private List<MultipartFile> fileS;
 
   // entity -> dto (for Select)
   public static GalleryDto of (final GalleryEntity entity) {
