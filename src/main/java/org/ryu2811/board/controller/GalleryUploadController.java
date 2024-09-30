@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -30,6 +31,21 @@ public class GalleryUploadController {
     svc.save (dto);
 
     return "redirect:/gallery";
+  }
+
+  @GetMapping("/galleries")
+  public String galleries(Model model) {
+    //전체 리스트 가져오기
+    List<GalleryDto> list = svc.list();
+    model.addAttribute("list", list);
+    return "galleries";
+  }
+
+  @PostMapping("/galleries")
+  public String uploadMany(GalleryDto dto) throws IOException {
+    //하나의 요청으로 여러개의 파일을 업로드
+    svc.uploadManyFile(dto);
+    return "redirect:/galleries";
   }
 }
 
