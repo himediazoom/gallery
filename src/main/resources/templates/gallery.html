@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery</title>
+</head>
+<body>
+  <h2>파일 업로드</h2>
+  <hr>
+  <form action="gallery" method="post" enctype="multipart/form-data">
+    <label>타이틀:
+      <input type="text" name="title">
+    </label>
+    <br>
+    <input type="file" accept="image/*" name="file"> <!-- 파일 선택 다이얼로그에서 보여줄 파일 리스트 -->
+    <br>
+    <input type="hidden" name="writer" value="ryu2811">
+    <button>Send</button>
+  </form>
+  <hr>
+  <h2>List in Gallery</h2>
+  <ul>
+    <li style="width: 200px; height: 200px; ">
+      <span>[[${dto.title}]]</span>
+      <span>[[${dto.writer}]]</span>
+      <span>[[${dto.fileNames}]]</span>
+      <br>
+      <img th:src="|@{/upload}/${dto.fileNames}|" th:alt="${dto.title}">   <!-- || 는 문자열을 연결함 -->
+    </li>
+  </ul>
+</body>
+</html>
